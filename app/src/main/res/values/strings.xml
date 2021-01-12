@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">AstroWeather</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Sun_Tab_Text">Sun</string>
+    <string name="Moon_Tab_Text">Moon</string>
+    <string name="Settings_Tab_Text">Settings</string>
+    <string name="Sun_Moon_Tab_Text">Sun/Moon</string>
+    <string name="Tablet_Tab_Text"><![CDATA[Sun, Moon & Settings]]></string>
+    <string name="current_time_text">Current time:</string>
+    <string name="location_text">Location:</string>
+    <string name="sunrise_text">Sunrise</string>
+    <string name="azimuth">Azimuth</string>
+    <string name="sunset_text">Sunset</string>
+    <string name="dusk_text">Dusk</string>
+    <string name="dawn_text">Dawn</string>
+    <string name="test">TEST</string>
+    <string name="moonrise_text">Moonrise</string>
+    <string name="moonset_text">Moonset</string>
+    <string name="new_moon_text">New Moon</string>
+    <string name="full_moon_text">Full Moon</string>
+    <string name="moon_phase_text">Moon Phase</string>
+    <string name="lunar_day_text">Lunar Day</string>
+    <string name="latitude_text">Latitude</string>
+    <string name="longitude_text">Longitude</string>
+    <string name="interval_text">Update Interval (minutes)</string>
+    <string name="accept_button_text">Accept</string>
+</resources>
