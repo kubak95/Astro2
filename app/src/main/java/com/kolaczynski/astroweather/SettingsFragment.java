@@ -88,7 +88,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         // return inflater.inflate(R.layout.fragment_settings, container, false);
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
-        acceptButton = (Button) view.findViewById(R.id.button_accept);
+        acceptButton = view.findViewById(R.id.button_accept);
         acceptButton.setOnClickListener(this);
 
 
@@ -119,9 +119,9 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
         AstroCalculator calculator = new AstroCalculator(date_time, location);
 
-        EditText latitude = (EditText) getView().findViewById(R.id.latitude);
-        EditText longitude = (EditText) getView().findViewById(R.id.longitude);
-        EditText UInterval = (EditText) getView().findViewById(R.id.interval);
+        EditText latitude = getView().findViewById(R.id.latitude);
+        EditText longitude = getView().findViewById(R.id.longitude);
+        EditText UInterval = getView().findViewById(R.id.interval);
 
         ((TextView) getView().findViewById(R.id.location)).setText(Data.longitude + "  |  " + Data.latitude);
         longitude.setText(String.valueOf(Data.longitude));
@@ -133,9 +133,9 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         if (v == acceptButton) {
             double tmp;
-            EditText latitude = (EditText) getView().findViewById(R.id.latitude);
-            EditText longitude = (EditText) getView().findViewById(R.id.longitude);
-            EditText UInterval = (EditText) getView().findViewById(R.id.interval);
+            EditText latitude = getView().findViewById(R.id.latitude);
+            EditText longitude = getView().findViewById(R.id.longitude);
+            EditText UInterval = getView().findViewById(R.id.interval);
 
             tmp = Double.parseDouble(longitude.getText().toString());
             if (tmp < 180 && tmp > -180) {

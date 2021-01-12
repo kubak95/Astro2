@@ -5,28 +5,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
-import com.astrocalculator.AstroDateTime;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.TimeZone;
-import com.kolaczynski.astroweather.TabletFragment;
-import com.kolaczynski.astroweather.SettingsFragment;
-
-import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,16 +24,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
+            final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
 
 
             public void run() {
                 String currentDateandTime = sdf.format(new Date());
                 Log.d("Handler", currentDateandTime + "  - This is msg from Handler, every " + Data.interval + " minutes");
-                handler.postDelayed(this, (long)(Data.interval*60000));
+                handler.postDelayed(this, (long) (Data.interval * 60000));
             }
         }, 5000);
         DisplayMetrics metrics = new DisplayMetrics();

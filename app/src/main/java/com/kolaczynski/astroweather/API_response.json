@@ -1,0 +1,46 @@
+{
+  "coord": {
+    "lon": 19.9453,
+    "lat": 52.1071
+  },
+  "weather": [
+    {
+      "id": 600,
+      "main": "Snow",
+      "description": "słabe opady śniegu",
+      "icon": "13n"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 273.15,
+    "feels_like": 266.94,
+    "temp_min": 273.15,
+    "temp_max": 273.15,
+    "pressure": 998,
+    "humidity": 99
+  },
+  "visibility": 4928,
+  "wind": {
+    "speed": 6,
+    "deg": 221
+  },
+  "snow": {
+    "1h": 0.19
+  },
+  "clouds": {
+    "all": 100
+  },
+  "dt": 1610481460,
+  "sys": {
+    "type": 3,
+    "id": 2000353,
+    "country": "PL",
+    "sunrise": 1610433844,
+    "sunset": 1610463155
+  },
+  "timezone": 3600,
+  "id": 3093066,
+  "name": "Łowicz",
+  "cod": 200
+}

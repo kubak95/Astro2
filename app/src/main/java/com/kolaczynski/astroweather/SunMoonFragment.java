@@ -1,14 +1,13 @@
 package com.kolaczynski.astroweather;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.astrocalculator.AstroCalculator;
 import com.astrocalculator.AstroDateTime;
@@ -55,6 +54,24 @@ public class SunMoonFragment extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    public static String formatDate(AstroDateTime date_time) {
+        String date = "?";
+        try {
+            date = String.format("%02d/%02d/%04d", date_time.getDay(), date_time.getMonth(), date_time.getYear());
+        } catch (Exception e) {
+        }
+        return date;
+    }
+
+    public static String formatTime(AstroDateTime date_time) {
+        String time = "?";
+        try {
+            time = String.format("%02d:%02d", date_time.getHour(), date_time.getMinute());
+        } catch (Exception e) {
+        }
+        return time;
     }
 
     @Override
@@ -128,23 +145,7 @@ public class SunMoonFragment extends Fragment {
         ((TextView) getView().findViewById(R.id.moon_phase)).setText(phase);
         ((TextView) getView().findViewById(R.id.lunar_day)).setText(lunarday);
 
-        ((TextView) getView().findViewById(R.id.location)).setText(Data.longitude + "  |  "+ Data.latitude);
+        ((TextView) getView().findViewById(R.id.location)).setText(Data.longitude + "  |  " + Data.latitude);
 
-    }
-
-    public static String formatDate(AstroDateTime date_time) {
-        String date = "?";
-        try {
-            date = String.format("%02d/%02d/%04d", date_time.getDay(), date_time.getMonth(), date_time.getYear());
-        } catch (Exception e) {}
-        return date;
-    }
-
-    public static String formatTime(AstroDateTime date_time) {
-        String time = "?";
-        try {
-            time = String.format("%02d:%02d", date_time.getHour(), date_time.getMinute());
-        } catch (Exception e) {}
-        return time;
     }
 }

@@ -16,7 +16,6 @@ import com.astrocalculator.AstroCalculator;
 import com.astrocalculator.AstroDateTime;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
@@ -31,8 +30,8 @@ public class TabletFragment extends Fragment implements OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_longi = "1.0";
-    private static final String  ARG_lati ="1.0";
-    private static final String ARG_interval="15";
+    private static final String ARG_lati = "1.0";
+    private static final String ARG_interval = "15";
     Button acceptButton;
     // TODO: Rename and change types of parameters
     private double mParam1;
@@ -55,7 +54,7 @@ public class TabletFragment extends Fragment implements OnClickListener {
     public static TabletFragment newInstance(String param1, String param2) {
         TabletFragment fragment = new TabletFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_longi,param1);
+        args.putString(ARG_longi, param1);
         args.putString(ARG_lati, param2);
         fragment.setArguments(args);
         return fragment;
@@ -98,7 +97,7 @@ public class TabletFragment extends Fragment implements OnClickListener {
 
 
         View view = inflater.inflate(R.layout.fragment_tablet, container, false);
-        acceptButton = (Button) view.findViewById(R.id.button_accept);
+        acceptButton = view.findViewById(R.id.button_accept);
         acceptButton.setOnClickListener(this);
 //        update();
 
@@ -146,7 +145,7 @@ public class TabletFragment extends Fragment implements OnClickListener {
         String moonset = formatTime(moonInfo.getMoonset());
         String newmoon = formatDate(moonInfo.getNextNewMoon());
         String fullmoon = formatDate(moonInfo.getNextFullMoon());
-        String phase = Integer.toString((int) (moonInfo.getIllumination() * 100)) + "%";
+        String phase = (int) (moonInfo.getIllumination() * 100) + "%";
         String lunarday = Integer.toString(abs((int) moonInfo.getAge()));
 
         ((TextView) getView().findViewById(R.id.moonrise)).setText(moonrise);
@@ -156,12 +155,12 @@ public class TabletFragment extends Fragment implements OnClickListener {
         ((TextView) getView().findViewById(R.id.moon_phase)).setText(phase);
         ((TextView) getView().findViewById(R.id.lunar_day)).setText(lunarday);
 
-   EditText latitude = (EditText) getView().findViewById(R.id.latitude);
-            EditText longitude = (EditText) getView().findViewById(R.id.longitude);
-            EditText UInterval = (EditText) getView().findViewById(R.id.interval);
-                longitude.setText(String.valueOf(Data.longitude));
-                latitude.setText(String.valueOf(Data.latitude));
-                UInterval.setText(String.valueOf(Data.interval));
+        EditText latitude = getView().findViewById(R.id.latitude);
+        EditText longitude = getView().findViewById(R.id.longitude);
+        EditText UInterval = getView().findViewById(R.id.interval);
+        longitude.setText(String.valueOf(Data.longitude));
+        latitude.setText(String.valueOf(Data.latitude));
+        UInterval.setText(String.valueOf(Data.interval));
         ((TextView) getView().findViewById(R.id.location)).setText(Data.longitude + "  |  " + Data.latitude);
 
     }
@@ -170,15 +169,15 @@ public class TabletFragment extends Fragment implements OnClickListener {
     public void onClick(View v) {
         if (v == acceptButton) {
             double tmp;
-            EditText latitude = (EditText) getView().findViewById(R.id.latitude);
-            EditText longitude = (EditText) getView().findViewById(R.id.longitude);
-            EditText UInterval = (EditText) getView().findViewById(R.id.interval);
+            EditText latitude = getView().findViewById(R.id.latitude);
+            EditText longitude = getView().findViewById(R.id.longitude);
+            EditText UInterval = getView().findViewById(R.id.interval);
 
             tmp = Double.parseDouble(longitude.getText().toString());
             if (tmp < 180 && tmp > -180) {
                 Data.longitude = tmp;
             } else {
-                Data.longitude= 0.0;
+                Data.longitude = 0.0;
                 longitude.setText(String.valueOf(Data.longitude));
                 Toast.makeText(getContext(), "Wrong longitude, should be between -180 and 180", Toast.LENGTH_SHORT).show();
             }
@@ -199,11 +198,10 @@ public class TabletFragment extends Fragment implements OnClickListener {
                 UInterval.setText(String.valueOf(Data.interval));
                 Toast.makeText(getContext(), "Wrong interval", Toast.LENGTH_SHORT).show();
             }
-        update();
+            update();
         }
 
     }
-
 
 
 }

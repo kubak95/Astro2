@@ -16,8 +16,6 @@ import java.util.Calendar;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
-import static java.lang.Math.abs;
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link SunFragment#newInstance} factory method to
