@@ -34,4 +34,5 @@
     <string name="WeatherDataText">Weather Data</string>
     <string name="IncomingDaysDataText">Incoming Days</string>
     <string name="AllWeatherDataText">Weather</string>
+    <string name="LocationText">Enter location</string>
 </resources>
