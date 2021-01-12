@@ -28,4 +28,10 @@
     <string name="longitude_text">Longitude</string>
     <string name="interval_text">Update Interval (minutes)</string>
     <string name="accept_button_text">Accept</string>
+    <string name="BasicDataText">Basic Data</string>
+    <string name="AdditionalDataFragment">Additional Data</string>
+    <string name="IncomingDaysText">Incoming Days Data</string>
+    <string name="WeatherDataText">Weather Data</string>
+    <string name="IncomingDaysDataText">Incoming Days</string>
+    <string name="AllWeatherDataText">Weather</string>
 </resources>

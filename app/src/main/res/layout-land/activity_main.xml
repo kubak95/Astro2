@@ -25,6 +25,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Settings_Tab_Text" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/WeatherDataFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/WeatherDataText" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/IncomingDaysDataFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/IncomingDaysDataText" />
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager

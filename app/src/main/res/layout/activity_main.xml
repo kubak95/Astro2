@@ -38,6 +38,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Settings_Tab_Text" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/BasicDataFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/BasicDataText" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/AdditionalDataFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/AdditionalDataFragment" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/IncomingDaysFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/IncomingDaysText" />
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager
