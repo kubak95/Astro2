@@ -1,6 +1,8 @@
 package com.kolaczynski.astroweather;
 
 import android.content.Context;
+import android.graphics.Path;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +14,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.concurrent.ExecutionException;
 
 
 /**
@@ -79,10 +84,26 @@ import android.widget.TextView;
     @Override
     public void onClick(View v) {
         if (v == acceptWeatherButton) {
-           TextView locationview = getView().findViewById(R.id.location_view);
+           TextView descriptionView = getView().findViewById(R.id.description_view);
             EditText locationedit = getView().findViewById(R.id.locationeditable);
-             String Location = locationedit.getText().toString();
-            locationview.setText(Location);
+
+            String myUrl = OpenWeatherAPI.currentWeatherRequestString + locationedit.getText().toString();
+            HttpGetRequest getRequest = new HttpGetRequest();
+            try {
+                String result = getRequest.execute(myUrl).get();
+//                Toast.makeText(getcontext(), "przed parsowaniem", Toast.LENGTH_SHORT).show();
+                 JSONParser.parseJSON(result);
+                Toast.makeText(getContext(), "po parsowaniu", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                e.printStackTrace();
+                JSONParser.parseFailed();
+                Toast.makeText(getContext(), "Nie udało się pobrać danych", Toast.LENGTH_SHORT).show();
+            }
+
+
+            descriptionView.setText(String.valueOf(OpenWeatherAPI.description));
         }
     }
 }
+
+
