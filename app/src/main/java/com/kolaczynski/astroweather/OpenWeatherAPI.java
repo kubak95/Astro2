@@ -1,11 +1,13 @@
 package com.kolaczynski.astroweather;
 
+import java.math.BigDecimal;
+
 public class OpenWeatherAPI {
     public static String locationName;
     public static double coordLon;
     public static double coordLat;
     public static String time;
-    public static float temperature;
+    public static String temperature;
     public static float pressure;
     public static String description;
     public static String icon;

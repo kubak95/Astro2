@@ -35,4 +35,11 @@
     <string name="IncomingDaysDataText">Incoming Days</string>
     <string name="AllWeatherDataText">Weather</string>
     <string name="LocationText">Enter location</string>
+    <string name="longitude_weather_text">Longitude</string>
+    <string name="latitude_weather_text">Latitude</string>
+    <string name="empty" />
+    <string name="temperature">Temperature (Celcius)</string>
+    <string name="PressureText">Pressure</string>
+    <string name="Description_text">Description</string>
+    <string name="Icon_text">Image</string>
 </resources>

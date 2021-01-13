@@ -1,22 +1,20 @@
 package com.kolaczynski.astroweather;
 
-import android.content.Context;
-import android.graphics.Path;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.concurrent.ExecutionException;
 
 
 /**
@@ -84,24 +82,42 @@ import java.util.concurrent.ExecutionException;
     @Override
     public void onClick(View v) {
         if (v == acceptWeatherButton) {
-           TextView descriptionView = getView().findViewById(R.id.description_view);
-            EditText locationedit = getView().findViewById(R.id.locationeditable);
-
-            String myUrl = OpenWeatherAPI.currentWeatherRequestString + locationedit.getText().toString();
+            EditText locationinput = getView().findViewById(R.id.location_input);
+            Log.d("Location", locationinput.getText().toString());
+            String myUrl = OpenWeatherAPI.currentWeatherRequestString + locationinput.getText().toString().replace(" ","%20");
+            Log.d("Location", myUrl);
             HttpGetRequest getRequest = new HttpGetRequest();
             try {
                 String result = getRequest.execute(myUrl).get();
-//                Toast.makeText(getcontext(), "przed parsowaniem", Toast.LENGTH_SHORT).show();
                  JSONParser.parseJSON(result);
-                Toast.makeText(getContext(), "po parsowaniu", Toast.LENGTH_SHORT).show();
+
             } catch (Exception e) {
                 e.printStackTrace();
                 JSONParser.parseFailed();
                 Toast.makeText(getContext(), "Nie udało się pobrać danych", Toast.LENGTH_SHORT).show();
             }
 
+            TextView longitude_weather_value, latitude_weather_value, LocationTime, temperature_value,pressure_value, description_view;
+            ImageView imageView;
+            int imagePath = getResources().getIdentifier("i"+OpenWeatherAPI.icon,"drawable", getContext().getPackageName() );
+            imageView = getView().findViewById(R.id.imageView);
+            imageView.setImageResource(imagePath);
 
-            descriptionView.setText(String.valueOf(OpenWeatherAPI.description));
+
+            longitude_weather_value = getView().findViewById(R.id.longitude_weather_value);
+            latitude_weather_value = getView().findViewById(R.id.latitude_weather_value);
+            LocationTime = getView().findViewById(R.id.LocationTime);
+            temperature_value = getView().findViewById(R.id.temperature_value);
+            pressure_value = getView().findViewById(R.id.pressure_value);
+            description_view = getView().findViewById(R.id.description_view);
+
+            longitude_weather_value.setText(String.valueOf(OpenWeatherAPI.coordLon));
+            latitude_weather_value.setText(String.valueOf(OpenWeatherAPI.coordLat));
+            LocationTime.setText(OpenWeatherAPI.time);
+            temperature_value.setText(String.valueOf(OpenWeatherAPI.temperature));
+            pressure_value.setText(String.valueOf(OpenWeatherAPI.pressure));
+            description_view.setText(OpenWeatherAPI.description);
+
         }
     }
 }
