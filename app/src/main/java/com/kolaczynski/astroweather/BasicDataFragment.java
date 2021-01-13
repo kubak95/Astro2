@@ -1,9 +1,6 @@
 package com.kolaczynski.astroweather;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
 
 
 /**
@@ -22,18 +20,16 @@ import android.widget.Toast;
  * Use the {@link BasicDataFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-    public class BasicDataFragment extends Fragment implements OnClickListener {
+public class BasicDataFragment extends Fragment implements OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    Button acceptWeatherButton;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-    Button acceptWeatherButton;
 
     public BasicDataFragment() {
         // Required empty public constructor
@@ -84,12 +80,12 @@ import android.widget.Toast;
         if (v == acceptWeatherButton) {
             EditText locationinput = getView().findViewById(R.id.location_input);
             Log.d("Location", locationinput.getText().toString());
-            String myUrl = OpenWeatherAPI.currentWeatherRequestString + locationinput.getText().toString().replace(" ","%20");
+            String myUrl = OpenWeatherAPI.currentWeatherRequestString + locationinput.getText().toString().replace(" ", "%20");
             Log.d("Location", myUrl);
             HttpGetRequest getRequest = new HttpGetRequest();
             try {
                 String result = getRequest.execute(myUrl).get();
-                 JSONParser.parseJSON(result);
+                JSONParser.parseJSON(result);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -97,9 +93,9 @@ import android.widget.Toast;
                 Toast.makeText(getContext(), "Nie udało się pobrać danych", Toast.LENGTH_SHORT).show();
             }
 
-            TextView longitude_weather_value, latitude_weather_value, LocationTime, temperature_value,pressure_value, description_view;
+            TextView longitude_weather_value, latitude_weather_value, LocationTime, temperature_value, pressure_value, description_view;
             ImageView imageView;
-            int imagePath = getResources().getIdentifier("i"+OpenWeatherAPI.icon,"drawable", getContext().getPackageName() );
+            int imagePath = getResources().getIdentifier("i" + OpenWeatherAPI.icon, "drawable", getContext().getPackageName());
             imageView = getView().findViewById(R.id.imageView);
             imageView.setImageResource(imagePath);
 

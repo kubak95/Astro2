@@ -6,23 +6,22 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 
 public class HttpGetRequest extends AsyncTask<String, Void, String> {
     public static final String REQUEST_METHOD = "GET";
     public static final int READ_TIMEOUT = 15000;
     public static final int CONNECTION_TIMEOUT = 15000;
+
     @Override
-    protected String doInBackground(String... params){
+    protected String doInBackground(String... params) {
         String stringUrl = params[0];
         String inputLine;
         try {
             //Create a URL object holding our url
             URL myUrl = new URL(stringUrl);
             //Create a connection
-            HttpURLConnection connection =(HttpURLConnection)
+            HttpURLConnection connection = (HttpURLConnection)
                     myUrl.openConnection();
             //Set methods and timeouts
             connection.setRequestMethod(REQUEST_METHOD);
@@ -38,7 +37,7 @@ public class HttpGetRequest extends AsyncTask<String, Void, String> {
             BufferedReader reader = new BufferedReader(streamReader);
             StringBuilder stringBuilder = new StringBuilder();
             //Check if the line we are reading is not null
-            while((inputLine = reader.readLine()) != null){
+            while ((inputLine = reader.readLine()) != null) {
                 stringBuilder.append(inputLine);
             }
             //Close our InputStream and Buffered reader
@@ -46,14 +45,14 @@ public class HttpGetRequest extends AsyncTask<String, Void, String> {
             streamReader.close();
             //Set our result equal to our stringBuilder
             OpenWeatherAPI.responseString = stringBuilder.toString();
-        }
-        catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
             OpenWeatherAPI.responseString = null;
         }
         return OpenWeatherAPI.responseString;
     }
-    protected void onPostExecute(String result){
+
+    protected void onPostExecute(String result) {
         super.onPostExecute(result);
     }
 }

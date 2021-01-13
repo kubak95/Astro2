@@ -6,7 +6,6 @@ import org.json.JSONObject;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -50,7 +49,7 @@ public class JSONParser {
     }
 
 
-    public static void parseFailed(){
+    public static void parseFailed() {
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
         long date = new Date().getTime();
         String dateAdjusted = formatter.format(date);

@@ -1,7 +1,5 @@
 package com.kolaczynski.astroweather;
 
-import java.math.BigDecimal;
-
 public class OpenWeatherAPI {
     public static String locationName;
     public static double coordLon;
@@ -12,7 +10,6 @@ public class OpenWeatherAPI {
     public static String description;
     public static String icon;
     public static int timezone;
-
 
 
     public static float windSpeed;

@@ -51,7 +51,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
             }
 
         } else
-            switch (position){
+            switch (position) {
                 case 0:
                     return new TabletFragment();
                 case 1:
