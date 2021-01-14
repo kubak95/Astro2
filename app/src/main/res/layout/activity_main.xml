@@ -7,11 +7,6 @@
     tools:context=".MainActivity">
 
 
-
-
-
-
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabBar"
         android:layout_width="409dp"
