@@ -1,9 +1,15 @@
 package com.kolaczynski.astroweather;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -12,12 +18,13 @@ import androidx.fragment.app.Fragment;
  * Use the {@link AdditionalDataFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AdditionalDataFragment extends Fragment {
+public class AdditionalDataFragment extends Fragment implements OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    Button acceptWeatherButton;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -58,6 +65,45 @@ public class AdditionalDataFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_additional_data, container, false);
+        View view = inflater.inflate(R.layout.fragment_additional_data, container, false);
+
+
+        acceptWeatherButton = view.findViewById(R.id.button_weather_accept);
+        acceptWeatherButton.setOnClickListener(this);
+
+        return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == acceptWeatherButton) {
+            EditText locationinput = getView().findViewById(R.id.location_input);
+            Log.d("Location", locationinput.getText().toString());
+            String myUrl = OpenWeatherAPI.currentWeatherRequestString + locationinput.getText().toString().replace(" ", "%20");
+            Log.d("Location", myUrl);
+            HttpGetRequest getRequest = new HttpGetRequest();
+            try {
+                String result = getRequest.execute(myUrl).get();
+                JSONParser.parseJSON(result);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                JSONParser.parseFailed();
+                Toast.makeText(getContext(), "Nie udało się pobrać danych", Toast.LENGTH_SHORT).show();
+            }
+
+            TextView wind_speed_value, wind_direction_value, humidity_value, visibility_value;
+
+            wind_speed_value = getView().findViewById(R.id.wind_speed_value);
+            wind_direction_value = getView().findViewById(R.id.wind_direction_value);
+            humidity_value = getView().findViewById(R.id.humidity_value);
+            visibility_value = getView().findViewById(R.id.visibility_value);
+
+            wind_speed_value.setText(String.valueOf(OpenWeatherAPI.windSpeed));
+            wind_direction_value.setText(String.valueOf(OpenWeatherAPI.windDirection));
+            humidity_value.setText(String.valueOf(OpenWeatherAPI.humidity));
+            visibility_value.setText(String.valueOf(OpenWeatherAPI.visibility));
+
+        }
     }
 }

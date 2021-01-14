@@ -42,4 +42,8 @@
     <string name="PressureText">Pressure</string>
     <string name="Description_text">Description</string>
     <string name="Icon_text">Image</string>
+    <string name="wind_speed_text">Wind Speed</string>
+    <string name="wind_direction_text">Wind Direction</string>
+    <string name="humidity_text">Humidity</string>
+    <string name="visibility_text">Visibility</string>
 </resources>
