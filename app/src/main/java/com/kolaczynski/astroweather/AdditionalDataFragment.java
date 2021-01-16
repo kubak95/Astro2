@@ -18,13 +18,12 @@ import androidx.fragment.app.Fragment;
  * Use the {@link AdditionalDataFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AdditionalDataFragment extends Fragment implements OnClickListener {
+public class AdditionalDataFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    Button acceptWeatherButton;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -68,42 +67,26 @@ public class AdditionalDataFragment extends Fragment implements OnClickListener 
         View view = inflater.inflate(R.layout.fragment_additional_data, container, false);
 
 
-        acceptWeatherButton = view.findViewById(R.id.button_weather_accept);
-        acceptWeatherButton.setOnClickListener(this);
-
         return view;
     }
-
     @Override
-    public void onClick(View v) {
-        if (v == acceptWeatherButton) {
-            EditText locationinput = getView().findViewById(R.id.location_input);
-            Log.d("Location", locationinput.getText().toString());
-            String myUrl = OpenWeatherAPI.currentWeatherRequestString + locationinput.getText().toString().replace(" ", "%20");
-            Log.d("Location", myUrl);
-            HttpGetRequest getRequest = new HttpGetRequest();
-            try {
-                String result = getRequest.execute(myUrl).get();
-                JSONParser.parseJSON(result);
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+       fillFields();
+    }
+    public void fillFields(){
 
-            } catch (Exception e) {
-                e.printStackTrace();
-                JSONParser.parseFailed();
-                Toast.makeText(getContext(), "Nie udało się pobrać danych", Toast.LENGTH_SHORT).show();
-            }
+        TextView location_view, wind_speed_value, wind_direction_value, humidity_value, visibility_value;
+        location_view = getView().findViewById(R.id.location_view);
+        wind_speed_value = getView().findViewById(R.id.wind_speed_value);
+        wind_direction_value = getView().findViewById(R.id.wind_direction_value);
+        humidity_value = getView().findViewById(R.id.humidity_value);
+        visibility_value = getView().findViewById(R.id.visibility_value);
 
-            TextView wind_speed_value, wind_direction_value, humidity_value, visibility_value;
-
-            wind_speed_value = getView().findViewById(R.id.wind_speed_value);
-            wind_direction_value = getView().findViewById(R.id.wind_direction_value);
-            humidity_value = getView().findViewById(R.id.humidity_value);
-            visibility_value = getView().findViewById(R.id.visibility_value);
-
-            wind_speed_value.setText(String.valueOf(OpenWeatherAPI.windSpeed));
-            wind_direction_value.setText(String.valueOf(OpenWeatherAPI.windDirection));
-            humidity_value.setText(String.valueOf(OpenWeatherAPI.humidity));
-            visibility_value.setText(String.valueOf(OpenWeatherAPI.visibility));
-
-        }
+        location_view.setText(OpenWeatherAPI.locationName);
+        wind_speed_value.setText(String.valueOf(OpenWeatherAPI.windSpeed));
+        wind_direction_value.setText(String.valueOf(OpenWeatherAPI.windDirection));
+        humidity_value.setText(String.valueOf(OpenWeatherAPI.humidity));
+        visibility_value.setText(String.valueOf(OpenWeatherAPI.visibility));
     }
 }

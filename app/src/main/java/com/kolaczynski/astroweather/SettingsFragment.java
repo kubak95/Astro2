@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +30,10 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    Button acceptButton;
+    Button acceptButton, acceptWeatherButton;
+    Switch unitSwitch ;
+
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -91,7 +96,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         acceptButton = view.findViewById(R.id.button_accept);
         acceptButton.setOnClickListener(this);
 
-
+        unitSwitch = view.findViewById(R.id.UnitsSwitch);
+        unitSwitch.setOnClickListener(this);
         return view;
     }
 
@@ -127,6 +133,31 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         longitude.setText(String.valueOf(Data.longitude));
         latitude.setText(String.valueOf(Data.latitude));
         UInterval.setText(String.valueOf(Data.interval));
+    }
+
+    public void fillFields() {
+
+
+        TextView longitude_weather_value, latitude_weather_value, LocationTime, temperature_value, pressure_value, description_view;
+        ImageView imageView;
+        int imagePath = getResources().getIdentifier("i" + OpenWeatherAPI.icon, "drawable", getContext().getPackageName());
+        imageView = getView().findViewById(R.id.imageView);
+        imageView.setImageResource(imagePath);
+
+
+        longitude_weather_value = getView().findViewById(R.id.longitude_weather_value);
+        latitude_weather_value = getView().findViewById(R.id.latitude_weather_value);
+        LocationTime = getView().findViewById(R.id.LocationTime);
+        temperature_value = getView().findViewById(R.id.temperature_value);
+        pressure_value = getView().findViewById(R.id.pressure_value);
+        description_view = getView().findViewById(R.id.description_view);
+
+        longitude_weather_value.setText(String.valueOf(OpenWeatherAPI.coordLon));
+        latitude_weather_value.setText(String.valueOf(OpenWeatherAPI.coordLat));
+        LocationTime.setText(OpenWeatherAPI.time);
+        temperature_value.setText(String.valueOf(OpenWeatherAPI.temperature));
+        pressure_value.setText(String.valueOf(OpenWeatherAPI.pressure));
+        description_view.setText(OpenWeatherAPI.description);
     }
 
     @Override
@@ -165,8 +196,63 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
             update();
 
+
+
+            EditText locationinput = getView().findViewById(R.id.location_weather_value);
+//            if (locationinput.getText().toString().isEmpty())
+//            {
+//                locationinput.setText("Lodz");
+//            }
+            String myUrl = OpenWeatherAPI.currentWeatherRequestString + locationinput.getText().toString().replace(" ", "%20");
+            HttpGetRequest getRequest = new HttpGetRequest();
+            boolean valueRead = false;
+            try {
+                String result = getRequest.execute(myUrl).get();
+                JSONParser.parseJSON(result);
+                String newUrl = OpenWeatherAPI.incomingDaysRequestString + "&lat=" + OpenWeatherAPI.coordLat + "&lon=" + OpenWeatherAPI.coordLon; // + "&units=" + "metric" //OpenWeatherAPI.units;
+                HttpGetRequest getNewRequest = new HttpGetRequest();
+                String newResult = getNewRequest.execute(newUrl).get();
+                JSONParser.parseIJSON(newResult);
+                valueRead = true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                JSONParser.parseFailed();
+                Toast.makeText(getContext(), "Nie udało się pobrać aktualnych danych", Toast.LENGTH_SHORT).show();
+            }
+            if (valueRead == false) {
+
+                try {
+                    String result = locationinput.getText().toString(); // jakos zeby z pliku czytalo
+                    String newResult = "lon"+ OpenWeatherAPI.coordLon + "lat"+OpenWeatherAPI.coordLat; // jakos zeby z pliku czytalo
+
+                    JSONParser.parseJSON(result);
+                    JSONParser.parseIJSON(newResult);
+                    valueRead = true;
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    JSONParser.parseFailed();
+                    JSONParser.parseIFailed();
+                    Toast.makeText(getContext(), "Nie udało się pobrać danych z pliku", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+
+//            fillFields();
         }
 
+        if (v == unitSwitch){
+
+            if (unitSwitch.isChecked()){
+                OpenWeatherAPI.units = "imperial";
+            }
+            else {
+                OpenWeatherAPI.units = "metric";
+            }
+
+//            fillfields();
+        }
     }
 
 }

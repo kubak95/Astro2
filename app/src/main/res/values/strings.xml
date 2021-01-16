@@ -34,11 +34,11 @@
     <string name="WeatherDataText">Weather Data</string>
     <string name="IncomingDaysDataText">Incoming Days</string>
     <string name="AllWeatherDataText">Weather</string>
-    <string name="LocationText">Enter location</string>
+    <string name="LocationText">Location</string>
     <string name="longitude_weather_text">Longitude</string>
     <string name="latitude_weather_text">Latitude</string>
     <string name="empty" />
-    <string name="temperature">Temperature (Celcius)</string>
+    <string name="temperature">Temperature</string>
     <string name="PressureText">Pressure</string>
     <string name="Description_text">Description</string>
     <string name="Icon_text">Image</string>
@@ -46,4 +46,9 @@
     <string name="wind_direction_text">Wind Direction</string>
     <string name="humidity_text">Humidity</string>
     <string name="visibility_text">Visibility</string>
+    <string name="location_weather_text">Location for Weather</string>
+    <string name="Units_text">Units</string>
+    <string name="day_temp">Temperature (day)</string>
+    <string name="night_temp">Temperature (night)</string>
+    <string name="weather_text_incom">Weather</string>
 </resources>
