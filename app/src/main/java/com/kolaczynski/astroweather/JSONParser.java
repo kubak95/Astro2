@@ -84,8 +84,7 @@ public class JSONParser {
             temp = new BigDecimal(Float.parseFloat(kelvin) - Float.parseFloat("273.15"), MathContext.DECIMAL32).round(new MathContext(3)).stripTrailingZeros().toPlainString() +"C";
         }
         else {
-            temp = new BigDecimal(9.0/5*(Float.parseFloat(kelvin)-273)+32).round(new MathContext(3)).stripTrailingZeros().toPlainString() + "F";
-//            String temp = new BigDecimal(Float.parseFloat(kelvin) - Float.parseFloat("273.15"), MathContext.DECIMAL32).round(new MathContext(3)).stripTrailingZeros().toPlainString();
+            temp = new BigDecimal(9.0/5*(Float.parseFloat(kelvin)-273.15)+32).round(new MathContext(3)).stripTrailingZeros().toPlainString() + "F";
         }
         return temp;
     }
