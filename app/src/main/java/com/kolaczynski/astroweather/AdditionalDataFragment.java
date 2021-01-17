@@ -1,15 +1,10 @@
 package com.kolaczynski.astroweather;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -69,12 +64,14 @@ public class AdditionalDataFragment extends Fragment {
 
         return view;
     }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-       fillFields();
+        fillFields();
     }
-    public void fillFields(){
+
+    public void fillFields() {
 
         TextView location_view, wind_speed_value, wind_direction_value, humidity_value, visibility_value;
         location_view = getView().findViewById(R.id.location_view);

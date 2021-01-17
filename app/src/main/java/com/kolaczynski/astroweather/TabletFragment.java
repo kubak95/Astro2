@@ -206,9 +206,6 @@ public class TabletFragment extends Fragment implements OnClickListener {
             update();
 
 
-
-
-
             EditText locationinput = getView().findViewById(R.id.location_weather_value);
             String myUrl = OpenWeatherAPI.currentWeatherRequestString + locationinput.getText().toString().replace(" ", "%20");
             HttpGetRequest getRequest = new HttpGetRequest();
@@ -230,7 +227,7 @@ public class TabletFragment extends Fragment implements OnClickListener {
 
                 try {
                     String result = locationinput.getText().toString(); // jakos zeby z pliku czytalo
-                    String newResult = "lon"+ OpenWeatherAPI.coordLon + "lat"+OpenWeatherAPI.coordLat; // jakos zeby z pliku czytalo
+                    String newResult = "lon" + OpenWeatherAPI.coordLon + "lat" + OpenWeatherAPI.coordLat; // jakos zeby z pliku czytalo
 
                     JSONParser.parseJSON(result);
                     JSONParser.parseIJSON(newResult);
@@ -247,12 +244,11 @@ public class TabletFragment extends Fragment implements OnClickListener {
 
 
         }
-        if (v == unitSwitch){
+        if (v == unitSwitch) {
 
-            if (unitSwitch.isChecked()){
+            if (unitSwitch.isChecked()) {
                 OpenWeatherAPI.units = "imperial";
-            }
-            else {
+            } else {
                 OpenWeatherAPI.units = "metric";
             }
 

@@ -31,7 +31,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     Button acceptButton, acceptWeatherButton;
-    Switch unitSwitch ;
+    Switch unitSwitch;
 
 
     // TODO: Rename and change types of parameters
@@ -197,7 +197,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             update();
 
 
-
             EditText locationinput = getView().findViewById(R.id.location_weather_value);
 //            if (locationinput.getText().toString().isEmpty())
 //            {
@@ -223,7 +222,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
                 try {
                     String result = locationinput.getText().toString(); // jakos zeby z pliku czytalo
-                    String newResult = "lon"+ OpenWeatherAPI.coordLon + "lat"+OpenWeatherAPI.coordLat; // jakos zeby z pliku czytalo
+                    String newResult = "lon" + OpenWeatherAPI.coordLon + "lat" + OpenWeatherAPI.coordLat; // jakos zeby z pliku czytalo
 
                     JSONParser.parseJSON(result);
                     JSONParser.parseIJSON(newResult);
@@ -242,12 +241,11 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 //            fillFields();
         }
 
-        if (v == unitSwitch){
+        if (v == unitSwitch) {
 
-            if (unitSwitch.isChecked()){
+            if (unitSwitch.isChecked()) {
                 OpenWeatherAPI.units = "imperial";
-            }
-            else {
+            } else {
                 OpenWeatherAPI.units = "metric";
             }
 

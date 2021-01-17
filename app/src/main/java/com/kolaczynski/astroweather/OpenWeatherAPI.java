@@ -19,14 +19,11 @@ public class OpenWeatherAPI {
 
 
     public static String incomingDaysRequestString = "https://api.openweathermap.org/data/2.5/onecall?exclude=hourly,minutely,current&appid=b156cf78262a577c51ce2f17ba05237d";
-    public static String units="metric";
+    public static String units = "metric";
 
     public static String requestedLocation;
     public static String currentWeatherRequestString = "https://api.openweathermap.org/data/2.5/weather?lang=pl&appid=b156cf78262a577c51ce2f17ba05237d&q=";
     public static String responseString;
-
-
-
 
 
     public static String day1date;

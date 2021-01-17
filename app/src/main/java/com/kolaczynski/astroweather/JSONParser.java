@@ -43,8 +43,6 @@ public class JSONParser {
         OpenWeatherAPI.visibility = Float.parseFloat(reader.getString("visibility"));
 
 
-
-
     }
 
 
@@ -71,20 +69,19 @@ public class JSONParser {
 
     }
 
-    public static String epochToDate(String epochTime){
+    public static String epochToDate(String epochTime) {
 
-        Date date = new Date(Long.parseLong(epochTime)*1000);
+        Date date = new Date(Long.parseLong(epochTime) * 1000);
         return new SimpleDateFormat("dd/MM/yyyy").format(date);
     }
 
 
-    public static String kelvinToTemp(String kelvin){
+    public static String kelvinToTemp(String kelvin) {
         String temp = null;
-        if (OpenWeatherAPI.units.equals("metric")){
-            temp = new BigDecimal(Float.parseFloat(kelvin) - Float.parseFloat("273.15"), MathContext.DECIMAL32).round(new MathContext(3)).stripTrailingZeros().toPlainString() +"C";
-        }
-        else {
-            temp = new BigDecimal(9.0/5*(Float.parseFloat(kelvin)-273.15)+32).round(new MathContext(3)).stripTrailingZeros().toPlainString() + "F";
+        if (OpenWeatherAPI.units.equals("metric")) {
+            temp = new BigDecimal(Float.parseFloat(kelvin) - Float.parseFloat("273.15"), MathContext.DECIMAL32).round(new MathContext(3)).stripTrailingZeros().toPlainString() + "C";
+        } else {
+            temp = new BigDecimal(9.0 / 5 * (Float.parseFloat(kelvin) - 273.15) + 32).round(new MathContext(3)).stripTrailingZeros().toPlainString() + "F";
         }
         return temp;
     }

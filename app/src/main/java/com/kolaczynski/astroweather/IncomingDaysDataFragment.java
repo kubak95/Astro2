@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -64,15 +63,14 @@ public class IncomingDaysDataFragment extends Fragment {
     }
 
 
-
     @Override
-    public void onViewCreated(View view, Bundle savedInstance){
+    public void onViewCreated(View view, Bundle savedInstance) {
         super.onViewCreated(view, savedInstance);
         fillFields();
     }
 
 
-    public void fillFields(){
+    public void fillFields() {
 
 
         TextView location_view, day1, day1dayTemp, day1nightTemp, day1weather,
@@ -87,7 +85,7 @@ public class IncomingDaysDataFragment extends Fragment {
         day3 = getView().findViewById(R.id.day3);
         day4 = getView().findViewById(R.id.day4);
 
-            day1dayTemp = getView().findViewById(R.id.day1_day_temp_val);
+        day1dayTemp = getView().findViewById(R.id.day1_day_temp_val);
         day2dayTemp = getView().findViewById(R.id.day2_day_temp_val);
         day3dayTemp = getView().findViewById(R.id.day3_day_temp_val);
         day4dayTemp = getView().findViewById(R.id.day4_day_temp_val);

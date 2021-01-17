@@ -1,16 +1,11 @@
 package com.kolaczynski.astroweather;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -20,7 +15,7 @@ import androidx.fragment.app.Fragment;
  * Use the {@link BasicDataFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BasicDataFragment extends Fragment  {
+public class BasicDataFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,17 +69,17 @@ public class BasicDataFragment extends Fragment  {
         return view;
     }
 
-@Override
-public void onViewCreated(View view, Bundle savedInstance){
+    @Override
+    public void onViewCreated(View view, Bundle savedInstance) {
         super.onViewCreated(view, savedInstance);
         fillFields();
-}
+    }
 
 
-    public void fillFields(){
+    public void fillFields() {
 
 
-        TextView location_view,longitude_weather_value, latitude_weather_value, LocationTime, temperature_value, pressure_value, description_view;
+        TextView location_view, longitude_weather_value, latitude_weather_value, LocationTime, temperature_value, pressure_value, description_view;
         ImageView imageView;
         int imagePath = getResources().getIdentifier("i" + OpenWeatherAPI.icon, "drawable", getContext().getPackageName());
         imageView = getView().findViewById(R.id.imageView);

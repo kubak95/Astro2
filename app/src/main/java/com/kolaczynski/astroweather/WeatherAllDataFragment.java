@@ -1,16 +1,12 @@
 package com.kolaczynski.astroweather;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -68,13 +64,15 @@ public class WeatherAllDataFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_weather_all_data, container, false);
         return view;
     }
+
     @Override
-    public void onViewCreated(View view, Bundle savedInstance){
+    public void onViewCreated(View view, Bundle savedInstance) {
         super.onViewCreated(view, savedInstance);
         fillFields();
     }
-    public void fillFields(){
-        TextView location_view,longitude_weather_value, latitude_weather_value, LocationTime, temperature_value, pressure_value, description_view, wind_speed_value, wind_direction_value, humidity_value, visibility_value;
+
+    public void fillFields() {
+        TextView location_view, longitude_weather_value, latitude_weather_value, LocationTime, temperature_value, pressure_value, description_view, wind_speed_value, wind_direction_value, humidity_value, visibility_value;
         ImageView imageView;
         int imagePath = getResources().getIdentifier("i" + OpenWeatherAPI.icon, "drawable", getContext().getPackageName());
         imageView = getView().findViewById(R.id.imageView);
@@ -108,9 +106,9 @@ public class WeatherAllDataFragment extends Fragment {
         humidity_value.setText(String.valueOf(OpenWeatherAPI.humidity));
         visibility_value.setText(String.valueOf(OpenWeatherAPI.visibility));
         TextView day1, day1dayTemp, day1nightTemp, day1weather,
-                 day2, day2dayTemp, day2nightTemp, day2weather,
-                 day3, day3dayTemp, day3nightTemp, day3weather,
-                 day4, day4dayTemp, day4nightTemp, day4weather;
+                day2, day2dayTemp, day2nightTemp, day2weather,
+                day3, day3dayTemp, day3nightTemp, day3weather,
+                day4, day4dayTemp, day4nightTemp, day4weather;
 
 
         day1 = getView().findViewById(R.id.day1);
@@ -159,5 +157,5 @@ public class WeatherAllDataFragment extends Fragment {
     }
 
 
-    }
+}
 

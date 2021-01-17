@@ -1,16 +1,11 @@
 package com.kolaczynski.astroweather;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -70,45 +65,45 @@ public class WeatherDataFragment extends Fragment {
 
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstance){
+    public void onViewCreated(View view, Bundle savedInstance) {
         super.onViewCreated(view, savedInstance);
         fillFields();
     }
 
-public void fillFields(){
-            TextView location_view,longitude_weather_value, latitude_weather_value, LocationTime, temperature_value, pressure_value, description_view, wind_speed_value, wind_direction_value, humidity_value, visibility_value;
-            ImageView imageView;
-            int imagePath = getResources().getIdentifier("i" + OpenWeatherAPI.icon, "drawable", getContext().getPackageName());
-            imageView = getView().findViewById(R.id.imageView);
-            imageView.setImageResource(imagePath);
+    public void fillFields() {
+        TextView location_view, longitude_weather_value, latitude_weather_value, LocationTime, temperature_value, pressure_value, description_view, wind_speed_value, wind_direction_value, humidity_value, visibility_value;
+        ImageView imageView;
+        int imagePath = getResources().getIdentifier("i" + OpenWeatherAPI.icon, "drawable", getContext().getPackageName());
+        imageView = getView().findViewById(R.id.imageView);
+        imageView.setImageResource(imagePath);
 
 
-            location_view = getView().findViewById(R.id.location_view);
-            longitude_weather_value = getView().findViewById(R.id.longitude_weather_value);
-            latitude_weather_value = getView().findViewById(R.id.latitude_weather_value);
-            LocationTime = getView().findViewById(R.id.LocationTime);
-            temperature_value = getView().findViewById(R.id.temperature_value);
-            pressure_value = getView().findViewById(R.id.pressure_value);
-            description_view = getView().findViewById(R.id.description_view);
+        location_view = getView().findViewById(R.id.location_view);
+        longitude_weather_value = getView().findViewById(R.id.longitude_weather_value);
+        latitude_weather_value = getView().findViewById(R.id.latitude_weather_value);
+        LocationTime = getView().findViewById(R.id.LocationTime);
+        temperature_value = getView().findViewById(R.id.temperature_value);
+        pressure_value = getView().findViewById(R.id.pressure_value);
+        description_view = getView().findViewById(R.id.description_view);
 
-            wind_speed_value = getView().findViewById(R.id.wind_speed_value);
-            wind_direction_value = getView().findViewById(R.id.wind_direction_value);
-            humidity_value = getView().findViewById(R.id.humidity_value);
-            visibility_value = getView().findViewById(R.id.visibility_value);
+        wind_speed_value = getView().findViewById(R.id.wind_speed_value);
+        wind_direction_value = getView().findViewById(R.id.wind_direction_value);
+        humidity_value = getView().findViewById(R.id.humidity_value);
+        visibility_value = getView().findViewById(R.id.visibility_value);
 
-            location_view.setText(OpenWeatherAPI.locationName);
+        location_view.setText(OpenWeatherAPI.locationName);
 
-            longitude_weather_value.setText(String.valueOf(OpenWeatherAPI.coordLon));
-            latitude_weather_value.setText(String.valueOf(OpenWeatherAPI.coordLat));
-            LocationTime.setText(OpenWeatherAPI.time);
-            temperature_value.setText(String.valueOf(OpenWeatherAPI.temperature));
-            pressure_value.setText(String.valueOf(OpenWeatherAPI.pressure));
-            description_view.setText(OpenWeatherAPI.description);
+        longitude_weather_value.setText(String.valueOf(OpenWeatherAPI.coordLon));
+        latitude_weather_value.setText(String.valueOf(OpenWeatherAPI.coordLat));
+        LocationTime.setText(OpenWeatherAPI.time);
+        temperature_value.setText(String.valueOf(OpenWeatherAPI.temperature));
+        pressure_value.setText(String.valueOf(OpenWeatherAPI.pressure));
+        description_view.setText(OpenWeatherAPI.description);
 
-            wind_speed_value.setText(String.valueOf(OpenWeatherAPI.windSpeed));
-            wind_direction_value.setText(String.valueOf(OpenWeatherAPI.windDirection));
-            humidity_value.setText(String.valueOf(OpenWeatherAPI.humidity));
-            visibility_value.setText(String.valueOf(OpenWeatherAPI.visibility));
-        }
+        wind_speed_value.setText(String.valueOf(OpenWeatherAPI.windSpeed));
+        wind_direction_value.setText(String.valueOf(OpenWeatherAPI.windDirection));
+        humidity_value.setText(String.valueOf(OpenWeatherAPI.humidity));
+        visibility_value.setText(String.valueOf(OpenWeatherAPI.visibility));
+    }
 
 }
