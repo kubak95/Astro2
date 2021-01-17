@@ -1,5 +1,6 @@
 package com.kolaczynski.astroweather;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,10 @@ import androidx.fragment.app.Fragment;
 import com.astrocalculator.AstroCalculator;
 import com.astrocalculator.AstroDateTime;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.util.Calendar;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
@@ -88,7 +93,6 @@ public class TabletFragment extends Fragment implements OnClickListener {
             mParam2 = getArguments().getDouble(ARG_lati);
             mParam3 = getArguments().getDouble(ARG_interval);
         }
-//        update();
 
     }
 
@@ -104,7 +108,6 @@ public class TabletFragment extends Fragment implements OnClickListener {
 
         unitSwitch = view.findViewById(R.id.UnitsSwitch);
         unitSwitch.setOnClickListener(this);
-//        update();
 
         return view;
     }
@@ -170,6 +173,40 @@ public class TabletFragment extends Fragment implements OnClickListener {
 
     }
 
+    private void saveJSONtoFile(Context context, String result, String locationString) {
+        String filename = locationString + ".json";
+        filename = filename.toLowerCase();
+        try {
+            FileOutputStream fos = context.openFileOutput(filename, Context.MODE_PRIVATE);
+            if (result != null) {
+                fos.write(result.getBytes());
+            }
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private String readJSONfromFile(Context context, String locationString) {
+        String filename = locationString + ".json";
+        filename = filename.toLowerCase();
+        try {
+            FileInputStream fis = context.openFileInput(filename);
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader bufferedReader = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                sb.append(line);
+            }
+            return sb.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     @Override
     public void onClick(View v) {
         if (v == acceptButton) {
@@ -207,16 +244,20 @@ public class TabletFragment extends Fragment implements OnClickListener {
 
 
             EditText locationinput = getView().findViewById(R.id.location_weather_value);
-            String myUrl = OpenWeatherAPI.currentWeatherRequestString + locationinput.getText().toString().replace(" ", "%20");
+            String locationString = locationinput.getText().toString().replace(" ", "%20");
+            String myUrl = OpenWeatherAPI.currentWeatherRequestString + locationString;
             HttpGetRequest getRequest = new HttpGetRequest();
             boolean valueRead = false;
             try {
                 String result = getRequest.execute(myUrl).get();
                 JSONParser.parseJSON(result);
+                saveJSONtoFile(getContext(), result, locationString);
+                String coordsString = "lat" + OpenWeatherAPI.coordLat + "lon" + OpenWeatherAPI.coordLon;
                 String newUrl = OpenWeatherAPI.incomingDaysRequestString + "&lat=" + OpenWeatherAPI.coordLat + "&lon=" + OpenWeatherAPI.coordLon; // + "&units=" + "metric" //OpenWeatherAPI.units;
                 HttpGetRequest getNewRequest = new HttpGetRequest();
                 String newResult = getNewRequest.execute(newUrl).get();
                 JSONParser.parseIJSON(newResult);
+                saveJSONtoFile(getContext(), newResult, coordsString);
                 valueRead = true;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -226,10 +267,10 @@ public class TabletFragment extends Fragment implements OnClickListener {
             if (valueRead == false) {
 
                 try {
-                    String result = locationinput.getText().toString(); // jakos zeby z pliku czytalo
-                    String newResult = "lon" + OpenWeatherAPI.coordLon + "lat" + OpenWeatherAPI.coordLat; // jakos zeby z pliku czytalo
-
+                    String result = readJSONfromFile(getContext(), locationString);
                     JSONParser.parseJSON(result);
+
+                    String newResult = readJSONfromFile(getContext(), "lat" + OpenWeatherAPI.coordLat + "lon" + OpenWeatherAPI.coordLon);
                     JSONParser.parseIJSON(newResult);
                     valueRead = true;
 
@@ -252,7 +293,6 @@ public class TabletFragment extends Fragment implements OnClickListener {
                 OpenWeatherAPI.units = "metric";
             }
 
-//            fillfields();
         }
     }
 

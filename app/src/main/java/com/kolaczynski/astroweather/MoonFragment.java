@@ -75,7 +75,6 @@ public class MoonFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//                update();
 
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -86,7 +85,6 @@ public class MoonFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//                update();
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_moon, container, false);

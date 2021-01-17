@@ -237,10 +237,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
 
             EditText locationinput = getView().findViewById(R.id.location_weather_value);
-//            if (locationinput.getText().toString().isEmpty())
-//            {
-//                locationinput.setText("Lodz");
-//            }
             String locationString = locationinput.getText().toString().replace(" ", "%20");
             String myUrl = OpenWeatherAPI.currentWeatherRequestString + locationString;
             HttpGetRequest getRequest = new HttpGetRequest();
@@ -254,7 +250,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 HttpGetRequest getNewRequest = new HttpGetRequest();
                 String newResult = getNewRequest.execute(newUrl).get();
                 JSONParser.parseIJSON(newResult);
-//                saveJSONtoFile(getContext(),newResult,coordsString);
+                saveJSONtoFile(getContext(), newResult, coordsString);
                 valueRead = true;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -267,13 +263,13 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                     String result = readJSONfromFile(getContext(), locationString);
                     JSONParser.parseJSON(result);
 
-                    String newResult = readJSONfromFile(getContext(), "lon" + OpenWeatherAPI.coordLon + "lat" + OpenWeatherAPI.coordLat);
+                    String newResult = readJSONfromFile(getContext(), "lat" + OpenWeatherAPI.coordLat + "lon" + OpenWeatherAPI.coordLon);
                     JSONParser.parseIJSON(newResult);
                     valueRead = true;
 
                 } catch (Exception e) {
                     e.printStackTrace();
-//                    JSONParser.parseFailed();
+                    JSONParser.parseFailed();
                     JSONParser.parseIFailed();
                     Toast.makeText(getContext(), "Nie udało się pobrać danych z pliku", Toast.LENGTH_SHORT).show();
                 }
@@ -281,7 +277,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             }
 
 
-//            fillFields();
         }
 
         if (v == unitSwitch) {
@@ -292,7 +287,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 OpenWeatherAPI.units = "metric";
             }
 
-//            fillfields();
         }
     }
 

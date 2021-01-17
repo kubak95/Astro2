@@ -17,7 +17,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
 
         if (this.getCount() == 6) {
-//           if (numOfTabs==3) {
 
             switch (position) {
                 case 0:
@@ -36,7 +35,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
                     return null;
             }
         } else if (this.getCount() == 4) {
-//       else if (numOfTabs==2){
             switch (position) {
                 case 0:
                     return new SunMoonFragment();

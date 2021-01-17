@@ -29,9 +29,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:text=""
                 android:textAlignment="textEnd"
-                android:textSize="25sp"
-                android:text="" />
+                android:textSize="25sp" />
 
         </LinearLayout>
 

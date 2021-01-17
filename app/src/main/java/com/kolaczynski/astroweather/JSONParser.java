@@ -137,6 +137,25 @@ public class JSONParser {
 
     public static void parseIFailed() {
 
+        OpenWeatherAPI.day1date = "";
+        OpenWeatherAPI.day2date = "";
+        OpenWeatherAPI.day3date = "";
+        OpenWeatherAPI.day4date = "";
+
+        OpenWeatherAPI.day1dayTemp = "";
+        OpenWeatherAPI.day2dayTemp = "";
+        OpenWeatherAPI.day3dayTemp = "";
+        OpenWeatherAPI.day4dayTemp = "";
+
+        OpenWeatherAPI.day1nightTemp = "";
+        OpenWeatherAPI.day2nightTemp = "";
+        OpenWeatherAPI.day3nightTemp = "";
+        OpenWeatherAPI.day4nightTemp = "";
+
+        OpenWeatherAPI.day1weather = "";
+        OpenWeatherAPI.day2weather = "";
+        OpenWeatherAPI.day3weather = "";
+        OpenWeatherAPI.day4weather = "";
     }
 
 

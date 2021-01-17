@@ -60,10 +60,7 @@ public class BasicDataFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        // return inflater.inflate(R.layout.fragment_settings, container, false);
         View view = inflater.inflate(R.layout.fragment_basic_data, container, false);
-//        acceptWeatherButton = view.findViewById(R.id.button_weather_accept);
-//        acceptWeatherButton.setOnClickListener(this);
 
 
         return view;
